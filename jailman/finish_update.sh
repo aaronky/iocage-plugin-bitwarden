@@ -4,7 +4,7 @@
 # Update for Bitwarden is pretty similair to installation
 
 #init jail
-initblueprint "$1"
+initplugin "$1"
 
 # Initialise defaults
 admin_token="${admin_token:-$(openssl rand -base64 16)}"
@@ -45,8 +45,8 @@ iocage exec "${1}" "tar -xzvf /usr/local/share/bitwarden/bw_web_$WEB_TAG.tar.gz 
 iocage exec "${1}" rm /usr/local/share/bitwarden/bw_web_"$WEB_TAG".tar.gz
 
 iocage exec "${1}" chown -R bitwarden:bitwarden /usr/local/share/bitwarden /config
-cp "${SCRIPT_DIR}"/blueprints/"${1}"/includes/bitwarden.rc /mnt/"${global_dataset_iocage}"/jails/"${1}"/root/usr/local/etc/rc.d/bitwarden
-cp "${SCRIPT_DIR}"/blueprints/"${1}"/includes/bitwarden.rc.conf /mnt/"${global_dataset_iocage}"/jails/"${1}"/root/usr/local/etc/rc.conf.d/bitwarden
+cp "${SCRIPT_DIR}"/plugins/"${1}"/includes/bitwarden.rc /mnt/"${global_dataset_iocage}"/jails/"${1}"/root/usr/local/etc/rc.d/bitwarden
+cp "${SCRIPT_DIR}"/plugins/"${1}"/includes/bitwarden.rc.conf /mnt/"${global_dataset_iocage}"/jails/"${1}"/root/usr/local/etc/rc.conf.d/bitwarden
 echo 'export DATABASE_URL="'"${DB_STRING}"'"' >> /mnt/"${global_dataset_iocage}"/jails/"${1}"/root/usr/local/etc/rc.conf.d/bitwarden
 echo 'export ADMIN_TOKEN="'"${admin_token}"'"' >> /mnt/"${global_dataset_iocage}"/jails/"${1}"/root/usr/local/etc/rc.conf.d/bitwarden
 

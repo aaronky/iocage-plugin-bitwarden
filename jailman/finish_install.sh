@@ -2,7 +2,7 @@
 # This file contains the install script for bitwarden
 
 #init jail
-initblueprint "$1"
+initplugin "$1"
 
 # Initialise defaults
 admin_token="${admin_token:-$(openssl rand -base64 16)}"
@@ -39,6 +39,6 @@ fi
 
 iocage exec "${1}" service bitwarden restart
 
-exitblueprint "$1"
+exitplugin "$1"
 echo "Admin Token is ${admin_token}"
 
