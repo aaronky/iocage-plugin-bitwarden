@@ -9,7 +9,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
+      - run: echo "::set-env name=SCRIPT_FILES::$( find . -name '*.sh' | xargs echo $1)"
       - name: Shell Linter
         uses: azohra/shell-linter@v0.3.0
+        with:
+          path: "${{env.SCRIPT_FILES}}"
         env:
           SHELLCHECK_OPTS: -P SCRIPTDIR
