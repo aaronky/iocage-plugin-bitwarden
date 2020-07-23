@@ -7,9 +7,9 @@ pw user add bitwarden -c bitwarden -u 725 -d /nonexistent -s /usr/bin/nologin
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
 
 # Install Bitwarden_rs
+TAG=$("curl --silent "https://api.github.com/repos/dani-garcia/bitwarden_rs/releases/latest" | jq -r .tag_name")
 mkdir -p /usr/local/share/bitwarden/src
 git clone https://github.com/dani-garcia/bitwarden_rs/ /usr/local/share/bitwarden/src
-TAG=$("git -C /usr/local/share/bitwarden/src tag --sort=v:refname | tail -n1")
 git -C /usr/local/share/bitwarden/src checkout ${TAG}
 
 cd /usr/local/share/bitwarden/src && $HOME/.cargo/bin/cargo build --features mysql --release
