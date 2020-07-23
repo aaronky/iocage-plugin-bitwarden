@@ -26,8 +26,8 @@ fi
 
 iocage exec "${1}" chown -R bitwarden:bitwarden /usr/local/share/bitwarden /config
 
-echo 'export DATABASE_URL="'"${DB_STRING}"'"' >> /mnt/"${global_dataset_iocage}"/jails/"${1}"/root/usr/local/etc/rc.conf.d/bitwarden
-echo 'export ADMIN_TOKEN="'"${admin_token}"'"' >> /mnt/"${global_dataset_iocage}"/jails/"${1}"/root/usr/local/etc/rc.conf.d/bitwarden
+echo 'export DATABASE_URL="'"${DB_STRING}"'"' >> "${global_dataset_iocage}"/jails/"${1}"/root/usr/local/etc/rc.conf.d/bitwarden
+echo 'export ADMIN_TOKEN="'"${admin_token}"'"' >> "${global_dataset_iocage}"/jails/"${1}"/root/usr/local/etc/rc.conf.d/bitwarden
 
 if [ "${admin_token}" == "NONE" ]; then
 	echo "Admin_token set to NONE, disabling admin portal"
