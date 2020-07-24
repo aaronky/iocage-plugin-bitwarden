@@ -11,7 +11,7 @@ mariadb_user="${mariadb_user:-$1}"
 
 
 #TODO LINK
-DB_HOST="jail_${link_mariadb}_ip4_addr"
+DB_HOST="${link_mariadb}_ip4_addr"
 DB_HOST="${!DB_HOST%/*}:3306"
 DB_STRING="mysql://${mariadb_user}:${mariadb_password}@${DB_HOST}/${mariadb_database}"
 
